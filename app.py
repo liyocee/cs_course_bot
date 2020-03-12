@@ -26,7 +26,7 @@ ECHO_BOT = EchoBot(ADAPTER)
 
 
 APP = web.Application(middlewares=[aiohttp_error_middleware])
-APP.router.add_post("/api/messages/echo", ECHO_BOT.requester_router())
+APP.router.add_post("/api/v1/echo", ECHO_BOT.requester_router())
 
 if __name__ == "__main__":
     try:
