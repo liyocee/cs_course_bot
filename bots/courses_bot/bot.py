@@ -5,7 +5,7 @@ from botbuilder.dialogs import Dialog
 from botbuilder.schema import ChannelAccount, Activity
 
 from bots import Bot
-from bots.courses_bot.dialogs import WELCOME_CARD
+from bots.courses_bot.cards import WELCOME_CARD
 from bots.courses_bot.dialogs.dialog_helper import DialogHelper
 
 
