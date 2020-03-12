@@ -1,0 +1,6 @@
+.worksheet
+*.pyc
+.pylintrc
+__pycache__
+.idea
+.env
