@@ -14,7 +14,7 @@ class Bot(ActivityHandler):
         super(Bot, self).__init__()
         self.bot_adapter = adapter
 
-    def requester_router(self):
+    def request_handler(self):
         async def router(req: Request) -> Response:
             # Main bot message handler.
             return await self.process_bot_request(req)
