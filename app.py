@@ -4,6 +4,7 @@ from botbuilder.core import (
     BotFrameworkAdapter,
     MemoryStorage, UserState, ConversationState)
 from botbuilder.core.integration import aiohttp_error_middleware
+from aiohttp.web import Request, Response, json_response
 
 from bots import Bot
 from bots.courses_bot.bot import CoursesBot
@@ -43,10 +44,15 @@ COURSES_BOT = CoursesBot(
     COURSE
 )
 
+
+async def ok(req: Request):
+    return Response(body="OK", status=201)
+
 # Map requests
 APP = web.Application(middlewares=[aiohttp_error_middleware])
 APP.router.add_post("/api/v1/echo", ECHO_BOT.request_handler())
 APP.router.add_post("/api/v1/course_units", COURSES_BOT.request_handler())
+APP.router.add_get("", ok)
 
 if __name__ == "__main__":
     try:
