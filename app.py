@@ -9,7 +9,6 @@ from bots import Bot
 from bots.courses_bot.bot import CoursesBot
 from bots.courses_bot.course_recognizer import CourseRecognizer
 from bots.courses_bot.data_models.course import Course
-from bots.courses_bot.dialogs.course_query_dialog import CourseQueryDialog
 from bots.courses_bot.dialogs.student_profile_dialog import StudentProfileDialog
 from bots.echo_bot.bot import EchoBot
 from config import DefaultConfig

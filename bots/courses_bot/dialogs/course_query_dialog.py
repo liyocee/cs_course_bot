@@ -1,3 +1,5 @@
+from typing import Callable, Dict, Optional
+
 from botbuilder.core import MessageFactory, Recognizer, RecognizerResult, TurnContext
 from botbuilder.dialogs import ComponentDialog, TextPrompt, WaterfallDialog, WaterfallStepContext, DialogTurnResult, \
     PromptOptions
@@ -23,12 +25,12 @@ class CourseQueryDialog(ComponentDialog):
             )
         )
 
-        self.course = course
-        self.luis_recognizer = luis_recognizer
+        self.course: course = course
+        self.luis_recognizer: Recognizer = luis_recognizer
 
-        self.initial_dialog_id = WaterfallDialog.__name__
+        self.initial_dialog_id: str = WaterfallDialog.__name__
 
-        self.intent_handlers = CourseIntentHandlers.get_handlers(course)
+        self.intent_handlers: Dict[str, Callable[[str], str]] = CourseIntentHandlers.get_handlers(course)
 
     async def query_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
         courses = list(map(lambda x: x.code, self.course.course_units))
@@ -38,8 +40,6 @@ class CourseQueryDialog(ComponentDialog):
         )
 
     async def query_results_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
-        query_string = step_context.result
-
         results: RecognizerResult = await self.luis_recognizer.recognize(step_context.context)
 
         await self.process_search_results(step_context, results)
@@ -55,7 +55,7 @@ class CourseQueryDialog(ComponentDialog):
             await step_context.context.send_activity(MessageFactory.text(f'No details were found for your query'))
             return
 
-        intent_handler = self.intent_handlers.get(intent.intent, None)
+        intent_handler: Optional[Callable[[str], str]] = self.intent_handlers.get(intent.intent, None)
 
         if intent_handler is None:
             await step_context.context.send_activity(MessageFactory.text(f'Could not process your query'))
