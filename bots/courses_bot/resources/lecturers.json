@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Dr Kennedy Bett",
+    "email": "bett@uon.ac.ke",
+    "phone": "+254715441309",
+    "office_hours": [
+      {
+        "day": "Monday",
+        "start_time": "0900 hrs",
+        "end_time": "1300 hrs"
+      },
+      {
+        "day": "Fridays",
+        "start_time": "0700 hrs",
+        "end_time": "1000 hrs"
+      }
+    ],
+    "course_units": [
+      "CS-120"
+    ]
+  },
+  {
+    "name": "Prof Elijah Simiyu",
+    "email": "simiyu@uon.ac.ke",
+    "phone": "+254715449009",
+    "office_hours": [
+      {
+        "day": "Tuesday",
+        "start_time": "1100 hrs",
+        "end_time": "1300 hrs"
+      },
+      {
+        "day": "Wednesday",
+        "start_time": "1600 hrs",
+        "end_time": "1700 hrs"
+      }
+    ],
+    "course_units": [
+      "CS-121"
+    ]
+  },
+  {
+    "name": "Prof Waema Muturi",
+    "email": "waema@uon.ac.ke",
+    "phone": "+254715129009",
+    "office_hours": [
+      {
+        "day": "Tuesday",
+        "start_time": "1100 hrs",
+        "end_time": "1300 hrs"
+      },
+      {
+        "day": "Wednesday",
+        "start_time": "1600 hrs",
+        "end_time": "1700 hrs"
+      }
+    ],
+    "course_units": [
+      "CS-122"
+    ]
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "building_name": "JKF Towers",
+    "room_number": "A103",
+    "code": "100"
+  },
+  {
+    "building_name": "Gandhi Wing",
+    "room_number": "B102",
+    "code": "101"
+  },
+  {
+    "building_name": "Taifa Hall",
+    "room_number": "C401",
+    "code": "102"
+  }
+]

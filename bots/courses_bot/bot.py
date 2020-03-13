@@ -5,7 +5,8 @@ from botbuilder.dialogs import Dialog
 from botbuilder.schema import ChannelAccount, Activity
 
 from bots import Bot
-from bots.courses_bot.dialogs import WELCOME_CARD
+from bots.courses_bot.cards import WELCOME_CARD
+from bots.courses_bot.data_models.course import Course
 from bots.courses_bot.dialogs.dialog_helper import DialogHelper
 
 
@@ -16,7 +17,8 @@ class CoursesBot(Bot):
         adapter: BotFrameworkAdapter,
         user_state: UserState,
         conversation_state: ConversationState,
-        dialog: Dialog
+        dialog: Dialog,
+        course: Course
     ):
         super(CoursesBot, self).__init__(adapter)
 
@@ -33,6 +35,7 @@ class CoursesBot(Bot):
         self.conversation_state: ConversationState = conversation_state
         self.user_state: UserState = user_state
         self.dialog = dialog
+        self.course = course
 
     async def on_turn(self, turn_context: TurnContext):
         await super().on_turn(turn_context)
