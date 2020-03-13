@@ -42,4 +42,3 @@ class Course:
                 json.load(input_stream)
             )
             return list(result)
-

@@ -8,6 +8,9 @@ class LectureHall:
         self.room_number = room_number
         self.code = code
 
+    def __str__(self):
+        return f"Building Name: {self.building_name} | Room No: {self.room_number} | "
+
     @classmethod
     def create(cls, hall: Dict) -> object:
         return cls(

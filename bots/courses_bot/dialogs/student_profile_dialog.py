@@ -1,4 +1,4 @@
-from botbuilder.core import UserState, StatePropertyAccessor, MessageFactory
+from botbuilder.core import UserState, StatePropertyAccessor, MessageFactory, Recognizer
 from botbuilder.dialogs import (
     ComponentDialog,
     WaterfallDialog,
@@ -20,9 +20,10 @@ from bots.courses_bot.dialogs.course_query_dialog import CourseQueryDialog
 
 class StudentProfileDialog(ComponentDialog):
 
-    def __init__(self, user_state: UserState, course: Course, dialog_id: str = None):
+    def __init__(self, user_state: UserState, course: Course, luis_recognizer: Recognizer, dialog_id: str = None):
         super(StudentProfileDialog, self).__init__(dialog_id or StudentProfileDialog.__name__)
         self.course = course
+        self.luis_recognizer = luis_recognizer
 
         # create accessor
         self.student_profile_accessor: StatePropertyAccessor = user_state.create_property("StudentProfile")
@@ -45,7 +46,7 @@ class StudentProfileDialog(ComponentDialog):
         self.add_dialog(ChoicePrompt(ChoicePrompt.__name__))
         self.add_dialog(ConfirmPrompt(ConfirmPrompt.__name__))
         self.add_dialog(AttachmentPrompt(AttachmentPrompt.__name__, StudentProfileDialog.picture_prompt_validator))
-        self.add_dialog(CourseQueryDialog(course, CourseQueryDialog.__name__))
+        self.add_dialog(CourseQueryDialog(course, luis_recognizer, CourseQueryDialog.__name__))
 
         self.initial_dialog_id = WaterfallDialog.__name__
 
