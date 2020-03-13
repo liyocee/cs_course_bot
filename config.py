@@ -12,6 +12,11 @@ class DefaultConfig:
     APP_ID = os.environ.get("MicrosoftAppId", "")
     APP_PASSWORD = os.environ.get("MicrosoftAppPassword", "")
 
+    # Luis app settings
+    LUIS_APP_ID = os.environ.get("LuisAppId", "")
+    LUIS_API_KEY = os.environ.get("LuisAPIKey", "")
+    LUIS_API_HOST_NAME = os.environ.get("LuisAPIHostName", "")
+
     class CoursePaths(Enum):
         COURSE_UNITS = course_resource_path("course_units.json")
         LECTURER_HALLS = course_resource_path("lecture_halls.json")

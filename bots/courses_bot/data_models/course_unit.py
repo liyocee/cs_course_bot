@@ -24,9 +24,17 @@ class CourseUnit:
         return apply
 
     @staticmethod
-    def search_by_code(course_units: List[object], codes: List[str]) -> List[object]:
+    def search_by_codes(course_units: List[object], codes: List[str]) -> List[object]:
         units = filter(
-            lambda x: x.code == x.code in codes,
+            lambda x: x.code in codes,
+            course_units
+        )
+        return list(units)
+
+    @staticmethod
+    def search_by_code(course_units: List[object], code: str) -> List[object]:
+        units = filter(
+            lambda x: x.code == code,
             course_units
         )
         return list(units)
