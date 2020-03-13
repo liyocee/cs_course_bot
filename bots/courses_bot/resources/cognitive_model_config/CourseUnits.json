@@ -1,0 +1,368 @@
+{
+  "luis_schema_version": "4.0.0",
+  "versionId": "0.1",
+  "name": "CourseUnits",
+  "desc": "Language model for computer science course units",
+  "culture": "en-us",
+  "tokenizerVersion": "1.0.0",
+  "intents": [
+    {
+      "name": "None"
+    },
+    {
+      "name": "ViewCourseExamSchedule"
+    },
+    {
+      "name": "ViewCourseLectureHall"
+    },
+    {
+      "name": "ViewCourseLecturerDetails"
+    },
+    {
+      "name": "ViewCourseTeachingAssistant"
+    }
+  ],
+  "entities": [],
+  "composites": [
+    {
+      "name": "CourseUnitLectureHalls",
+      "children": [
+        "LectureHalls",
+        "CourseUnits"
+      ],
+      "roles": []
+    },
+    {
+      "name": "CourseUnitLecturers",
+      "children": [
+        "CourseUnits",
+        "Lecturers"
+      ],
+      "roles": []
+    },
+    {
+      "name": "CourseUnitTeachingAssistants",
+      "children": [
+        "CourseUnits",
+        "TeachingAssistants"
+      ],
+      "roles": []
+    }
+  ],
+  "closedLists": [
+    {
+      "name": "CourseUnits",
+      "subLists": [
+        {
+          "canonicalForm": "CS-120",
+          "list": [
+            "cs-120",
+            "120",
+            "cs 120",
+            "CS 120",
+            "Data structures and Algorithms",
+            "Data structures",
+            "Algorithms"
+          ]
+        },
+        {
+          "canonicalForm": "CS-121",
+          "list": [
+            "cs-121",
+            "121",
+            "Discrete Mathematics",
+            "Discrete",
+            "discrete",
+            "discrete mathematics",
+            "CS 121"
+          ]
+        },
+        {
+          "canonicalForm": "CS-122",
+          "list": [
+            "cs-122",
+            "cs 122",
+            "122",
+            "Automata",
+            "automata",
+            "Automata Theory",
+            "automata theory",
+            "CS 122"
+          ]
+        }
+      ],
+      "roles": []
+    },
+    {
+      "name": "LectureHalls",
+      "subLists": [
+        {
+          "canonicalForm": "100",
+          "list": [
+            "JKF Towers",
+            "A103"
+          ]
+        },
+        {
+          "canonicalForm": "101",
+          "list": [
+            "Gandhi Wing",
+            "B102"
+          ]
+        },
+        {
+          "canonicalForm": "102",
+          "list": [
+            "Taifa Hall",
+            "C401"
+          ]
+        }
+      ],
+      "roles": []
+    },
+    {
+      "name": "Lecturers",
+      "subLists": [
+        {
+          "canonicalForm": "Dr Kennedy Bett",
+          "list": [
+            "Kennedy",
+            "Bett",
+            "Kennedy Bett"
+          ]
+        },
+        {
+          "canonicalForm": "Prof Elijah Simiyu",
+          "list": [
+            "Elijah",
+            "Simiyu",
+            "Waema Muturi"
+          ]
+        },
+        {
+          "canonicalForm": "Prof Waema Muturi",
+          "list": [
+            "Waema",
+            "Muturi",
+            "Waema Muturi"
+          ]
+        }
+      ],
+      "roles": []
+    },
+    {
+      "name": "TeachingAssistants",
+      "subLists": [
+        {
+          "canonicalForm": "Towet Anatoliy",
+          "list": [
+            "Anatoliy",
+            "Towet"
+          ]
+        },
+        {
+          "canonicalForm": "Vlad Dmitry",
+          "list": [
+            "Dmitry",
+            "Vlad"
+          ]
+        }
+      ],
+      "roles": []
+    }
+  ],
+  "patternAnyEntities": [],
+  "regex_entities": [],
+  "prebuiltEntities": [],
+  "model_features": [],
+  "regex_features": [],
+  "patterns": [],
+  "utterances": [
+    {
+      "text": "class for cs-121",
+      "intent": "ViewCourseLectureHall",
+      "entities": []
+    },
+    {
+      "text": "class room for cs-120",
+      "intent": "ViewCourseLectureHall",
+      "entities": []
+    },
+    {
+      "text": "class room for cs-121",
+      "intent": "ViewCourseLectureHall",
+      "entities": []
+    },
+    {
+      "text": "exam schedule for cs-120",
+      "intent": "ViewCourseExamSchedule",
+      "entities": []
+    },
+    {
+      "text": "exam schedule for cs-121",
+      "intent": "ViewCourseExamSchedule",
+      "entities": []
+    },
+    {
+      "text": "exam schedule for cs-122",
+      "intent": "ViewCourseExamSchedule",
+      "entities": []
+    },
+    {
+      "text": "lecture hall for cs-120",
+      "intent": "ViewCourseLectureHall",
+      "entities": []
+    },
+    {
+      "text": "lecture hall for cs-121",
+      "intent": "ViewCourseLectureHall",
+      "entities": []
+    },
+    {
+      "text": "lecture hall for cs-122",
+      "intent": "ViewCourseLectureHall",
+      "entities": []
+    },
+    {
+      "text": "lecturer for cs-120",
+      "intent": "ViewCourseLecturerDetails",
+      "entities": []
+    },
+    {
+      "text": "lecturer for cs-121",
+      "intent": "ViewCourseLecturerDetails",
+      "entities": []
+    },
+    {
+      "text": "lecturer for cs-122",
+      "intent": "ViewCourseLecturerDetails",
+      "entities": []
+    },
+    {
+      "text": "ta for cs-120",
+      "intent": "ViewCourseTeachingAssistant",
+      "entities": []
+    },
+    {
+      "text": "ta for cs-121",
+      "intent": "ViewCourseTeachingAssistant",
+      "entities": []
+    },
+    {
+      "text": "ta for cs-122",
+      "intent": "ViewCourseTeachingAssistant",
+      "entities": []
+    },
+    {
+      "text": "teacher cs-120",
+      "intent": "ViewCourseLecturerDetails",
+      "entities": []
+    },
+    {
+      "text": "teacher cs-121",
+      "intent": "ViewCourseLecturerDetails",
+      "entities": []
+    },
+    {
+      "text": "teacher cs-122",
+      "intent": "ViewCourseLecturerDetails",
+      "entities": []
+    },
+    {
+      "text": "teaching assistant for cs-120",
+      "intent": "ViewCourseTeachingAssistant",
+      "entities": []
+    },
+    {
+      "text": "teaching assistant for cs-121",
+      "intent": "ViewCourseTeachingAssistant",
+      "entities": []
+    },
+    {
+      "text": "teaching assistant for cs-122",
+      "intent": "ViewCourseTeachingAssistant",
+      "entities": []
+    },
+    {
+      "text": "teaching cs-120",
+      "intent": "ViewCourseLecturerDetails",
+      "entities": []
+    },
+    {
+      "text": "teaching cs-121",
+      "intent": "ViewCourseLecturerDetails",
+      "entities": []
+    },
+    {
+      "text": "teaching cs-122",
+      "intent": "ViewCourseLecturerDetails",
+      "entities": []
+    },
+    {
+      "text": "what is the lecture hall for cs-122",
+      "intent": "ViewCourseLectureHall",
+      "entities": []
+    },
+    {
+      "text": "when are exams for cs-120",
+      "intent": "ViewCourseExamSchedule",
+      "entities": []
+    },
+    {
+      "text": "when are exams for cs-121",
+      "intent": "ViewCourseExamSchedule",
+      "entities": []
+    },
+    {
+      "text": "when are exams for cs-122",
+      "intent": "ViewCourseExamSchedule",
+      "entities": []
+    },
+    {
+      "text": "when will exams for cs-120 happen",
+      "intent": "ViewCourseExamSchedule",
+      "entities": []
+    },
+    {
+      "text": "when will exams for cs-121 happen",
+      "intent": "ViewCourseExamSchedule",
+      "entities": []
+    },
+    {
+      "text": "when will exams for cs-122 happen",
+      "intent": "ViewCourseExamSchedule",
+      "entities": []
+    },
+    {
+      "text": "where is cs-120 taking place",
+      "intent": "ViewCourseLectureHall",
+      "entities": []
+    },
+    {
+      "text": "where is cs-121 taking place",
+      "intent": "ViewCourseLectureHall",
+      "entities": []
+    },
+    {
+      "text": "where is cs-122 taking place",
+      "intent": "ViewCourseLectureHall",
+      "entities": []
+    },
+    {
+      "text": "who is the lecturer for cs-120",
+      "intent": "ViewCourseLecturerDetails",
+      "entities": []
+    },
+    {
+      "text": "who is the lecturer for cs-121",
+      "intent": "ViewCourseLecturerDetails",
+      "entities": []
+    },
+    {
+      "text": "who is the lecturer for cs-122",
+      "intent": "ViewCourseLecturerDetails",
+      "entities": []
+    }
+  ],
+  "settings": []
+}
