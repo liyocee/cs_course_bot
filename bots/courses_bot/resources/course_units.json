@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Data structures and Algorithms",
+    "code": "CS-120",
+    "lecture_hall": "100"
+  },
+  {
+    "name": "Discrete Mathematics",
+    "code": "CS-121",
+    "lecture_hall": "101"
+  },
+  {
+    "name": "Automata Theory",
+    "code": "CS-122",
+    "lecture_hall": "102"
+  }
+]
