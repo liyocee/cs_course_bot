@@ -1,7 +1,9 @@
 import sys
 import traceback
 from datetime import datetime
+from typing import Callable, Awaitable
 
+from aiohttp.abc import StreamResponse
 from aiohttp.web import Request, Response, json_response
 from botbuilder.core import ActivityHandler, BotFrameworkAdapter, TurnContext
 from botbuilder.schema import Activity, ActivityTypes
@@ -14,7 +16,7 @@ class Bot(ActivityHandler):
         super(Bot, self).__init__()
         self.bot_adapter = adapter
 
-    def request_handler(self):
+    def request_handler(self) -> Callable[[Request], Awaitable[StreamResponse]]:
         async def router(req: Request) -> Response:
             # Main bot message handler.
             return await self.process_bot_request(req)
@@ -39,7 +41,7 @@ class Bot(ActivityHandler):
             raise exception
 
     @staticmethod
-    async def handle_bot_errors(context: TurnContext, error: Exception):
+    async def handle_bot_errors(context: TurnContext, error: Exception) -> None:
         # Handle bot errors
         print(f"\n [on_turn_error] unhandled error: {error}", file=sys.stderr)
         traceback.print_exc()

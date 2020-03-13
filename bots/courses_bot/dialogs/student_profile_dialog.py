@@ -12,14 +12,16 @@ from botbuilder.dialogs import (
     Choice,
     PromptValidatorContext)
 
+from bots.courses_bot.data_models.course import Course
 from bots.courses_bot.data_models.course_unit import CourseUnit
 from bots.courses_bot.data_models.student_profile import StudentProfile, StudentProfileAttributes
 
 
 class StudentProfileDialog(ComponentDialog):
 
-    def __init__(self, user_state: UserState, dialog_id: str = None):
+    def __init__(self, user_state: UserState, course: Course, dialog_id: str = None):
         super(StudentProfileDialog, self).__init__(dialog_id or StudentProfileDialog.__name__)
+        self.course = course
 
         # create accessor
         self.student_profile_accessor: StatePropertyAccessor = user_state.create_property("StudentProfile")
@@ -82,8 +84,7 @@ class StudentProfileDialog(ComponentDialog):
         )
         return await step_context.prompt(AttachmentPrompt.__name__, prompt_options)
 
-    @staticmethod
-    async def courses_step(step_context: WaterfallStepContext) -> DialogTurnResult:
+    async def courses_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
         step_context.values[StudentProfileAttributes.PICTURE.value] = step_context.result[0]
         name = step_context.values[StudentProfileAttributes.NAME.value]
 
@@ -100,7 +101,7 @@ class StudentProfileDialog(ComponentDialog):
             ChoicePrompt.__name__,
             PromptOptions(
                 prompt=MessageFactory.text("Please select the course you are interested in"),
-                choices=[Choice("CS 101"), Choice("CS 102"), Choice("CS 103")]
+                choices=list(map(lambda x: Choice(x.code), self.course.course_units))
             )
         )
 
@@ -111,12 +112,13 @@ class StudentProfileDialog(ComponentDialog):
         student_profile.name = step_context.values[StudentProfileAttributes.NAME.value]
         student_profile.admission_number = step_context.values[StudentProfileAttributes.ADMISSION_NUMBER.value]
         student_profile.picture = step_context.values[StudentProfileAttributes.PICTURE.value]
-        student_profile.course_unit = CourseUnit(step_context.result.value)
+        course_units = CourseUnit.search_by_code(self.course.course_units, step_context.result.value)
+        student_profile.course_unit = course_units[0] if len(course_units) > 0 else None
 
         msg = (
             f"Hello {student_profile.name}, your details have been captured as: "
             f"Admission number: {student_profile.admission_number} "
-            f"Course unit: {student_profile.course_unit.name} "
+            f"Course unit: {student_profile.course_unit.name} " if student_profile.course_unit else ""
         )
 
         await step_context.context.send_activity(

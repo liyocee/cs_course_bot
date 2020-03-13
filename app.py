@@ -7,6 +7,7 @@ from botbuilder.core.integration import aiohttp_error_middleware
 
 from bots import Bot
 from bots.courses_bot.bot import CoursesBot
+from bots.courses_bot.data_models.course import Course
 from bots.courses_bot.dialogs.student_profile_dialog import StudentProfileDialog
 from bots.echo_bot.bot import EchoBot
 from config import DefaultConfig
@@ -26,8 +27,17 @@ ADAPTER.on_turn_error = Bot.handle_bot_errors
 # Create Echo Bot
 ECHO_BOT = EchoBot(ADAPTER)
 
+# Load course info
+COURSE = Course.load_courses(CONFIG)
+
 # Create Courses Bot
-COURSES_BOT = CoursesBot(ADAPTER, USER_STATE, CONVERSATION_STATE, StudentProfileDialog(USER_STATE))
+COURSES_BOT = CoursesBot(
+    ADAPTER,
+    USER_STATE,
+    CONVERSATION_STATE,
+    StudentProfileDialog(USER_STATE, COURSE),
+    COURSE
+)
 
 # Map requests
 APP = web.Application(middlewares=[aiohttp_error_middleware])
