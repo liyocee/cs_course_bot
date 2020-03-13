@@ -15,6 +15,7 @@ from botbuilder.dialogs import (
 from bots.courses_bot.data_models.course import Course
 from bots.courses_bot.data_models.course_unit import CourseUnit
 from bots.courses_bot.data_models.student_profile import StudentProfile, StudentProfileAttributes
+from bots.courses_bot.dialogs.course_query_dialog import CourseQueryDialog
 
 
 class StudentProfileDialog(ComponentDialog):
@@ -37,13 +38,14 @@ class StudentProfileDialog(ComponentDialog):
                     self.courses_step,
                     self.summary_step
                 ]
-            )
+            ),
         )
 
         self.add_dialog(TextPrompt(TextPrompt.__name__))
         self.add_dialog(ChoicePrompt(ChoicePrompt.__name__))
         self.add_dialog(ConfirmPrompt(ConfirmPrompt.__name__))
         self.add_dialog(AttachmentPrompt(AttachmentPrompt.__name__, StudentProfileDialog.picture_prompt_validator))
+        self.add_dialog(CourseQueryDialog(course, CourseQueryDialog.__name__))
 
         self.initial_dialog_id = WaterfallDialog.__name__
 
@@ -128,8 +130,7 @@ class StudentProfileDialog(ComponentDialog):
         )
 
         await step_context.context.send_activity(MessageFactory.text(msg))
-
-        return await step_context.end_dialog()
+        return await step_context.begin_dialog(CourseQueryDialog.__name__)
 
     @staticmethod
     async def picture_prompt_validator(prompt_context: PromptValidatorContext) -> bool:
