@@ -2,16 +2,19 @@
   {
     "name": "Data structures and Algorithms",
     "code": "CS-120",
-    "lecture_hall": "100"
+    "lecture_hall": "100",
+    "exam_schedule": "April 30, 2020"
   },
   {
     "name": "Discrete Mathematics",
     "code": "CS-121",
-    "lecture_hall": "101"
+    "lecture_hall": "101",
+    "exam_schedule": "May 14, 2020"
   },
   {
     "name": "Automata Theory",
     "code": "CS-122",
-    "lecture_hall": "102"
+    "lecture_hall": "102",
+    "exam_schedule": "June 21, 2020"
   }
 ]
