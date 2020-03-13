@@ -30,7 +30,3 @@ class CourseUnit:
             course_units
         )
         return list(units)
-
-
-
-
