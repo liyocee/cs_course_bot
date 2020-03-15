@@ -18,6 +18,7 @@ class TestLectureHall:
         assert lecture_hall.building_name == "HALL_1"
         assert lecture_hall.room_number == "100"
         assert lecture_hall.code == "1201"
+        assert str(lecture_hall) == "Building Name: HALL_1 | Room No: 100 | "
 
     def test_create_lecture_hall_invalid_data(self):
         lecture_hall_dict: Dict = {
