@@ -14,9 +14,15 @@ class Intents(Enum):
 
 
 class CourseIntentHandlers:
+    """CourseHandlers for different intents"""
 
     @staticmethod
     def get_handlers(course: Course) -> Dict[str, Callable[[str], str]]:
+        """
+        Return factory functions for handling different intents
+        :param course:
+        :return:
+        """
         return {
             Intents.ViewCourseExamSchedule.value: CourseIntentHandlers.handle_course_exam_schedule(course),
             Intents.ViewCourseLectureHall.value: CourseIntentHandlers.handle_course_lecture_hall(course),
@@ -26,6 +32,11 @@ class CourseIntentHandlers:
 
     @staticmethod
     def handle_course_exam_schedule(course:  Course) -> Callable[[str], str]:
+        """
+        Return a handler for ViewCourseExamSchedule intent
+        :param course:
+        :return:
+        """
         def course_exam_schedule(course_code: str) -> str:
             courses: List[CourseUnit] = CourseUnit.search_by_code(course.course_units, course_code)
             schedule: List[str] = list(map(lambda x: f"{x.exam_schedule} | ", courses))
@@ -36,6 +47,11 @@ class CourseIntentHandlers:
 
     @staticmethod
     def handle_course_lecture_hall(course:  Course) -> Callable[[str], str]:
+        """
+        Return a handler for ViewCourseLectureHall intent
+        :param course:
+        :return:
+        """
         def course_lecture_hall(course_code: str) -> str:
             courses: List[CourseUnit] = CourseUnit.search_by_code(course.course_units, course_code)
             lecturer_halls: List[str] = list(map(
@@ -52,6 +68,11 @@ class CourseIntentHandlers:
 
     @staticmethod
     def handle_course_lecturer_details(course:  Course) -> Callable[[str], str]:
+        """
+        Return a handler for ViewCourseLecturerDetails intent
+        :param course:
+        :return:
+        """
 
         def course_lecturer(course_code: str) -> str:
             lecturers: List[Lecturer] = Lecturer.search_by_course_code(course.lecturers, course_code)
@@ -63,14 +84,19 @@ class CourseIntentHandlers:
 
             lecturers_str: List[str] = list(filter(lambda x: x is not None, lecturers))
 
-            return f"Lecturer is : {','.join(lecturers_str)}" if len(lecturers_str) > 0 else "No Lecture found!"
+            return f"Lecturer is : {','.join(lecturers_str)}" if len(lecturers_str) > 0 else "No Lecturer found!"
 
         return course_lecturer
 
     @staticmethod
     def handle_course_ta_details(course:  Course) -> Callable[[str], str]:
+        """
+        Return a handler for ViewCourseTeachingAssistant intent
+        :param course:
+        :return:
+        """
         def course_ta(course_code: str) -> str:
-            ta_s: List[CourseTeachingAssistant] = Lecturer.search_by_course_code(course.lecturers, course_code)
+            ta_s: List[CourseTeachingAssistant] = Lecturer.search_by_course_code(course.teaching_assistants, course_code)
 
             ta_s: List[str] = list(map(
                 lambda x: str(x) if x else None,
