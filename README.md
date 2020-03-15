@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/liyocee/cs_course_bot.svg?branch=master)](https://travis-ci.org/liyocee/cs_course_bot)
+
 # Computer Science(CS) Course Units Bot (cs_course_bot)
 A demonstration bot built to help Computer Science students find out details about the course units they are undertaking in
 a hypothetical university
