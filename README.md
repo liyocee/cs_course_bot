@@ -29,3 +29,6 @@ This sample **requires** prerequisites in order to run.
 - Enter a Bot URL of `http://localhost:3978/api/v1/echo` - for the echo bot that occurs back your input
 - Enter a Bot URL of `http://localhost:3978/api/v1/course_units` - for the CS course bot
 
+### Running unit tests
+- Run `py.test`
+- The coverage report is generated in the `htmlcov` folder 

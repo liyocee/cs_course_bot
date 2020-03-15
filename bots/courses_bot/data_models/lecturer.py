@@ -1,10 +1,12 @@
-from typing import List, Dict
+from typing import List, Dict, Set
 
+from bots.courses_bot.data_models import course_unit
 from bots.courses_bot.data_models.course_unit import CourseUnit
 from bots.courses_bot.data_models.office_hours import OfficeHours
 
 
 class Lecturer:
+    """Lecturer data model"""
 
     def __init__(
         self,
@@ -22,8 +24,23 @@ class Lecturer:
 
     @classmethod
     def create(cls, course_units: List[CourseUnit]):
+        """
+        Create a factory function for creating Lecture
+        :param course_units:
+        :return:
+        """
 
         def apply(lecturer: Dict) -> Lecturer:
+            """
+            Lecturer factory function
+            :param lecturer:
+            :return:
+            """
+            invariants: Set[str] = {'name', 'email', 'phone', 'course_units', 'office_hours'}
+            provided_keys: Set[str] = set(lecturer.keys())
+            # Validate invariants
+            assert invariants == set(provided_keys), f"Missing parameters: {invariants.difference(provided_keys)}"
+
             return cls(
                 name=lecturer["name"],
                 email=lecturer["email"],
@@ -39,6 +56,12 @@ class Lecturer:
 
     @staticmethod
     def search_by_course_code(lecturers: List[object], course_code: str) -> List[object]:
+        """
+        Search Lecturer by a course code for the course unit they teach
+        :param lecturers:
+        :param course_code:
+        :return:
+        """
         results = filter(
             lambda x: len(CourseUnit.search_by_code(x.course_units, course_code)) > 0,
             lecturers

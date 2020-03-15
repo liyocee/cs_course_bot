@@ -2,6 +2,7 @@ from typing import Dict, List
 
 
 class LectureHall:
+    """Lecture hall data model"""
 
     def __init__(self, building_name: str, room_number: str, code: str):
         self.building_name = building_name
@@ -13,6 +14,15 @@ class LectureHall:
 
     @classmethod
     def create(cls, hall: Dict) -> object:
+        """
+        Create a lecture hall from the provided hall dict
+        :param hall:
+        :return:
+        """
+        # validate invariants
+        for invariant in ['building_name', 'room_number', 'code']:
+            assert invariant in hall, f'Missing required parameter {invariant}'
+
         return cls(
             building_name=hall["building_name"],
             room_number=hall["room_number"],
@@ -21,6 +31,12 @@ class LectureHall:
 
     @staticmethod
     def search_by_code(lecture_halls: List[object], code: str) -> object:
+        """
+        Search for a lecture hall matching the provided code
+        :param lecture_halls:
+        :param code:
+        :return:
+        """
         halls = filter(
             lambda x: x.code == code,
             lecture_halls

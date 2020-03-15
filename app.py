@@ -1,10 +1,12 @@
+import logging
+
 from aiohttp import web
+from aiohttp.web import Request, Response
 from botbuilder.core import (
     BotFrameworkAdapterSettings,
     BotFrameworkAdapter,
     MemoryStorage, UserState, ConversationState)
 from botbuilder.core.integration import aiohttp_error_middleware
-from aiohttp.web import Request, Response, json_response
 
 from bots import Bot
 from bots.courses_bot.bot import CoursesBot
@@ -46,10 +48,17 @@ COURSES_BOT = CoursesBot(
 
 
 async def ok(req: Request):
+    """
+    Health check endpoint
+    :param req:
+    :return:
+    """
+    logging.info("Checking app health info")
     return Response(body="OK", status=201)
 
 # Map requests
 APP = web.Application(middlewares=[aiohttp_error_middleware])
+logging.basicConfig(level=logging.INFO)
 APP.router.add_post("/api/v1/echo", ECHO_BOT.request_handler())
 APP.router.add_post("/api/v1/course_units", COURSES_BOT.request_handler())
 APP.router.add_get("", ok)
