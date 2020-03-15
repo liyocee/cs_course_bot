@@ -1,3 +1,4 @@
+import logging
 import sys
 import traceback
 from datetime import datetime
@@ -17,6 +18,7 @@ class Bot(ActivityHandler):
         self.bot_adapter = adapter
 
     def request_handler(self) -> Callable[[Request], Awaitable[StreamResponse]]:
+
         async def router(req: Request) -> Response:
             # Main bot message handler.
             return await self.process_bot_request(req)
@@ -43,7 +45,7 @@ class Bot(ActivityHandler):
     @staticmethod
     async def handle_bot_errors(context: TurnContext, error: Exception) -> None:
         # Handle bot errors
-        print(f"\n [on_turn_error] unhandled error: {error}", file=sys.stderr)
+        logging.error(f"\n [on_turn_error] unhandled error: {error}", file=sys.stderr)
         traceback.print_exc()
 
         # Send a message to the user

@@ -53,6 +53,7 @@ async def ok(req: Request):
     :param req:
     :return:
     """
+    logging.info("Checking app health info")
     return Response(body="OK", status=201)
 
 # Map requests
