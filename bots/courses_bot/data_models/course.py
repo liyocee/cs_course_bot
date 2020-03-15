@@ -10,6 +10,7 @@ T = TypeVar('T')
 
 
 class Course:
+    """Course model"""
     def __init__(
         self,
         course_units: List[CourseUnit],
@@ -22,6 +23,11 @@ class Course:
 
     @classmethod
     def load_courses(cls, config: DefaultConfig):
+        """
+        Create a Course from course json files resources
+        :param config:
+        :return:
+        """
         lecture_halls = cls.load_course_resource(config.CoursePaths.LECTURER_HALLS.value, LectureHall.create)
         course_units = cls.load_course_resource(config.CoursePaths.COURSE_UNITS.value, CourseUnit.create(lecture_halls))
         lecturers = cls.load_course_resource(config.CoursePaths.LECTURER.value, Lecturer.create(course_units))
@@ -36,6 +42,12 @@ class Course:
 
     @staticmethod
     def load_course_resource(full_path: str, resource_factory: Callable[[Dict], T]) -> List[T]:
+        """
+        Create an object of T from a json input
+        :param full_path:
+        :param resource_factory:
+        :return:
+        """
         with open(full_path) as input_stream:
             result = map(
                 lambda item: resource_factory(item),
