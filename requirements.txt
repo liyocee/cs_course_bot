@@ -2,7 +2,7 @@ botbuilder
 botbuilder-core
 aiohttp
 aiounittest==1.3.0
-requests==2.22.0
+requests==2.31.0
 botbuilder-dialogs
 botbuilder-ai
 pytest-aiohttp
